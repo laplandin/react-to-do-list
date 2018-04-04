@@ -1,10 +1,10 @@
 [
   {
-    "label": "one",
+    "label": "To-Do-List",
     "href": "/to-do-list"
   },
   {
-    "label": "two",
+    "label": "About",
     "href": "/about"
   }
 ]

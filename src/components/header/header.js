@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
+import styles from './header.css';
 
 class Header extends Component {
     constructor(props) {
@@ -13,7 +16,13 @@ class Header extends Component {
     };
 
     render() {
-        return <header>{this.items.map((link, index) => <Link to={link.href} key={index}>{link.label}</Link>)}</header>;
+        return (
+            <AppBar>
+                {this.items.map((link, index) => {
+                    return <RaisedButton className={styles.navBtn}  key={index}><Link to={link.href}>{link.label}</Link></RaisedButton>})
+                }
+            </AppBar>
+        )
     }
 }
 

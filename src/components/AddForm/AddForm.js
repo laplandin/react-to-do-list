@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = {
+    margin: 12,
+};
 
 class NewTaskForm extends Component {
     constructor(props) {
@@ -17,19 +23,19 @@ class NewTaskForm extends Component {
         return (
             <div className='form-wrapper'>
                 <form action="">
-                    <input
+                    <TextField
                         value={this.state.form.name}
                         onChange={this.onNameInput}
-                        type="text"
-                        placeholder='Введите имя задачи'
-                    />
-                    <input
+                        hintText="Введите имя задачи"
+                        floatingLabelText="Введите имя задачи"
+                    /><br />
+                    <TextField
                         value={this.state.form.description}
                         onChange={this.onDescriptionInput}
-                        type="text"
-                        placeholder='Введите описание задачи'
-                    />
-                    <button onClick={this.onSubmit}>Сохранить</button>
+                        hintText="Введите описание задачи"
+                        floatingLabelText="Введите описание задачи"
+                    /><br />
+                    <RaisedButton onClick={this.onSubmit} label="Create" primary={true} style={style}/>
                 </form>
             </div>
         )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 import ToDoItem from '../ToDoItem/ToDoItem'
 import AddForm from '../AddForm/AddForm'
+import styles from './toDoList.css'
 
 class ToDoList extends Component {
     constructor() {
@@ -9,8 +10,8 @@ class ToDoList extends Component {
         this.state = {
             tasks: [
                 {
-                    name: 'First',
-                    description: 'Description for first task',
+                    name: 'Example task',
+                    description: 'Let\'s create your first task in ouw App, just enter it below and click to Create',
                     status: false
                 }
             ]
@@ -38,7 +39,7 @@ class ToDoList extends Component {
 
     render() {
         return (
-            <div className='to-do-list'>
+            <div className={styles.toDoList}>
                 {this.state.tasks.map((task, index) => {
                     return (
                         <ToDoItem
