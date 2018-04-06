@@ -1,4 +1,9 @@
 .navBtn {
     align-self: center;
-    margin-right: 10px;
+    margin-right: 10px !important;
+}
+
+.navWrapper {
+    display: flex;
+    padding: 0 30px;
 }

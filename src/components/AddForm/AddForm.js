@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as toDoAction from '../../store/ducks/todos';
+
+const mapStateToProps = (state) => ({todos: state.todos});
+const mapDispatchToProps = (dispatch) => bindActionCreators(toDoAction, dispatch);
 
 const style = {
     margin: 12,
@@ -17,32 +25,32 @@ class NewTaskForm extends Component {
         };
         this.onDescriptionInput = this.onDescriptionInput.bind(this);
         this.onNameInput = this.onNameInput.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.formSubmit = this.formSubmit.bind(this);
     }
     render() {
         return (
             <div className='form-wrapper'>
                 <form action="">
+                    <h4>New TODO</h4>
                     <TextField
                         value={this.state.form.name}
                         onChange={this.onNameInput}
-                        hintText="Введите имя задачи"
-                        floatingLabelText="Введите имя задачи"
+                        placeholder="TODO caption"
                     /><br />
                     <TextField
                         value={this.state.form.description}
                         onChange={this.onDescriptionInput}
-                        hintText="Введите описание задачи"
-                        floatingLabelText="Введите описание задачи"
+                        placeholder="TODO description"
                     /><br />
-                    <RaisedButton onClick={this.onSubmit} label="Create" primary={true} style={style}/>
+                    <Button variant="raised" color="default" onClick={this.formSubmit} label="Create" style={style}>Create</Button>
                 </form>
             </div>
         )
     }
 
-    onSubmit(e) {
+    formSubmit(e) {
         e.preventDefault();
+        this.props.addToDo({name: this.state.form.name, description: this.state.form.description});
         this.props.onTaskAdd(Object.assign({}, this.state.form));
         const form = this.state.form;
         form.name = '';
@@ -62,4 +70,4 @@ class NewTaskForm extends Component {
         this.setState({ form })
     }
 }
-export default NewTaskForm;
+export default connect(mapStateToProps, mapDispatchToProps)(NewTaskForm);

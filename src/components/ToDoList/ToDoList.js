@@ -4,19 +4,15 @@ import ToDoItem from '../ToDoItem/ToDoItem'
 import AddForm from '../AddForm/AddForm'
 import styles from './toDoList.css'
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as toDoAction from '../../store/ducks/todos';
+
+const mapStateToProps = (state) => ({todos: state.todos});
+const mapDispatchToProps = (dispatch) => bindActionCreators(toDoAction, dispatch);
+
 class ToDoList extends Component {
-    constructor() {
-        super();
-        this.state = {
-            tasks: [
-                {
-                    name: 'Example task',
-                    description: 'Let\'s create your first task in ouw App, just enter it below and click to Create',
-                    status: false
-                }
-            ]
-        }
-    }
     removeTask = (index) => {
         console.log('remove', index);
         const updatedTasks = this.state.tasks;
@@ -40,14 +36,14 @@ class ToDoList extends Component {
     render() {
         return (
             <div className={styles.toDoList}>
-                {this.state.tasks.map((task, index) => {
+                {this.props.todos.map((task, index) => {
                     return (
                         <ToDoItem
                             key={index}
                             task={task}
                             index={index}
-                            removeTask={this.removeTask}
-                            done={this.done}
+                            removeTask={this.props.removeToDo}
+                            done={this.props.toggleToDo}
                         >
                         </ToDoItem>
                     )}
@@ -59,4 +55,4 @@ class ToDoList extends Component {
     }
 }
 
-export default ToDoList;
+export default connect(mapStateToProps,mapDispatchToProps)(ToDoList);

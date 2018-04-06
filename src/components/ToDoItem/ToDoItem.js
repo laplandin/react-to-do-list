@@ -1,5 +1,5 @@
 import React from 'react'
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 import styles from './ToDoItem.css'
 
 const style = {
@@ -16,8 +16,8 @@ const ToDoItem = ({ task, index, removeTask, done }) => {
         <div className={task.status ? `${styles.toDoItemDone} to-do-item` : `to-do-item`}>
             <h3>{index + 1} {task.name}</h3>
             <p>{task.description}</p>
-            <RaisedButton onClick={function (e) {removeTask(index)}} style={style}><span style={spanStyle}>Удалить задачу</span></RaisedButton>
-            <RaisedButton onClick={(e) => done(index)}><span style={spanStyle}>Выполнено</span></RaisedButton>
+            <Button variant="raised" color="primary" onClick={(e) => removeTask(index)} style={style}><span style={spanStyle}>Удалить задачу</span></Button>
+            <Button variant="raised" color="primary" onClick={(e) => done(index)}><span style={spanStyle}>Выполнено</span></Button>
         </div>
     )
 };
